@@ -17,11 +17,11 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE))
 
-from src.answer import ask, retrieve  # noqa: E402
+from src.answer import ask, retrieve, TOP_K  # noqa: E402
 
 TEST_SET = BASE / "data" / "test_set.csv"
 RESULTS_DIR = BASE / "eval" / "results"
-K = 4
+K = TOP_K
 PAUSE = 4  # seconds between questions, to stay under the free-tier rate limit
 IN_SCOPE = ["formal", "slang_abbrev", "typo", "code_mixed_en", "banjar_mixed"]
 
