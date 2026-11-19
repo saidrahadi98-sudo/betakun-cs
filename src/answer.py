@@ -7,6 +7,7 @@ EMBED_MODEL = "intfloat/multilingual-e5-base"
 TOP_K = 4
 CUTOFF = 0.40  # best distance above this means "not sure"; tune it with the evaluation
 SOURCES_SHOWN = 2
+MARKER = "[HANDOFF]"  # the model answers with this when the FAQ cannot answer the question
 
 HANDOFF_MESSAGE = (
     "Maaf, saya belum yakin dengan jawabannya. Saya hubungkan Anda ke agen manusia kami ya. "
@@ -14,8 +15,8 @@ HANDOFF_MESSAGE = (
     "WhatsApp 0811-0000-0000."
 )
 
-SYSTEM = """Kamu adalah asisten customer service BorneoNet, penyedia internet rumah.
-Jawab pertanyaan pelanggan HANYA berdasarkan FAQ yang diberikan.
+SYSTEM = """Jika jawabannya tidak ada di FAQ, atau pertanyaan tidak berhubungan dengan layanan BorneoNet, 
+balas HANYA dengan kata [HANDOFF] tanpa tambahan apa pun.
 
 Aturan:
 - Jika pelanggan memakai bahasa santai atau singkatan, jawab dengan Indonesia yang sopan dan mudah dimengerti.
@@ -66,5 +67,7 @@ def ask(question, retrieve_fn=None, generate_fn=None):
     if generate_fn is None:
         from src.llm import generate as generate_fn
     answer = generate_fn(SYSTEM, build_user_message(question, chunks))
+    if MARKER in answer:
+        return {"answer": HANDOFF_MESSAGE, "sources": [], "handoff": True, "best_distance": best}
     sources = [c["source"] for c in chunks[:SOURCES_SHOWN]]
     return {"answer": answer, "sources": sources, "handoff": False, "best_distance": best}
