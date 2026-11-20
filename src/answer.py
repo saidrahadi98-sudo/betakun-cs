@@ -4,7 +4,7 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent.parent
 DB_DIR = BASE / "db"
 EMBED_MODEL = "intfloat/multilingual-e5-base"
-TOP_K = 4
+TOP_K = 8
 CUTOFF = 0.45  # best distance above this means "not sure"; tune it with the evaluation
 SOURCES_SHOWN = 2
 MARKER = "[HANDOFF]"  # the model answers with this when the FAQ cannot answer the question
