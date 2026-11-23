@@ -166,4 +166,5 @@ if __name__ == "__main__":
     args = sys.argv[1:]
     label = next((a for a in args if "=" not in a), "baseline")
     limit = next((int(a.split("=")[1]) for a in args if a.startswith("limit=")), None)
-    main(label, limit)
+    testset = next((a.split("=", 1)[1] for a in args if a.startswith("testset=")), None)
+    main(label, limit, test_set=(BASE / testset) if testset else TEST_SET)
