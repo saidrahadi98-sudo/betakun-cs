@@ -1,5 +1,6 @@
 """ask(question) -> answer, sources, handoff. Used by app.py and the evaluation scripts."""
 from pathlib import Path
+from src.normalize import normalize
 
 BASE = Path(__file__).resolve().parent.parent
 DB_DIR = BASE / "db"
@@ -7,6 +8,7 @@ EMBED_MODEL = "intfloat/multilingual-e5-base"
 TOP_K = 8
 CUTOFF = 0.45  # best distance above this means "not sure"; tune it with the evaluation
 SOURCES_SHOWN = 2
+NORMALIZE = True  # rewrite Banjarese words and slang before the search (experiment D1)
 MARKER = "[HANDOFF]"  # the model answers with this when the FAQ cannot answer the question
 
 HANDOFF_MESSAGE = (
@@ -42,7 +44,8 @@ def _load():
 def retrieve(question, k=TOP_K):
     """Return the k closest FAQ entries as dicts with source, text and distance."""
     model, col = _load()
-    emb = model.encode(["query: " + question], normalize_embeddings=True).tolist()
+    query = normalize(question) if NORMALIZE else question
+    emb = model.encode(["query: " + query], normalize_embeddings=True).tolist()
     res = col.query(query_embeddings=emb, n_results=k)
     return [
         {"source": meta["source"], "text": doc, "distance": dist}
