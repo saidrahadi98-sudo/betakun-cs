@@ -10,11 +10,16 @@ import sys
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE))
+
+from src.answer import TOP_K  # noqa: E402
+from src.normalize import normalize  # noqa: E402
+
 TEST_SET = BASE / "data" / "test_set.csv"
 DB_DIR = BASE / "db"
 RESULTS_DIR = BASE / "eval" / "results"
 MODEL_NAME = "intfloat/multilingual-e5-base"
-K = 4
+K = TOP_K
 IN_SCOPE = ["formal", "slang_abbrev", "typo", "code_mixed_en", "banjar_mixed"]
 
 
@@ -89,6 +94,7 @@ def main():
     from sentence_transformers import SentenceTransformer
 
     label = sys.argv[1] if len(sys.argv) > 1 else "baseline"
+    use_norm = "normalize" in sys.argv[2:]
     rows = load_test_set()
     print(f"Loaded {len(rows)} test questions from {TEST_SET}")
 
@@ -104,7 +110,7 @@ def main():
     print(f"Loading model {MODEL_NAME} ...")
     model = SentenceTransformer(MODEL_NAME)
     embeddings = model.encode(
-        ["query: " + r["question"] for r in rows],
+        ["query: " + (normalize(r["question"]) if use_norm else r["question"]) for r in rows],
         normalize_embeddings=True,
         batch_size=32,
         show_progress_bar=True,
