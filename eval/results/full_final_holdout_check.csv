@@ -1,0 +1,2 @@
+id,question,reference_answer,bot_answer,judge_said_correct,my_verdict
+H007,"Min, inet ku ngelag bgtt dr td, knp yaa?","Kecepatan bisa dipengaruhi jumlah perangkat, aplikasi berat, atau kondisi jaringan. Coba restart modem dan pastikan tidak ada unduhan besar.","Kecepatan internet yang lambat dapat dipengaruhi oleh jumlah perangkat yang terhubung, penggunaan aplikasi berat, atau kondisi jaringan. Coba restart modem Anda dan pastikan tidak ada proses unduhan besar yang sedang berjalan.",True,

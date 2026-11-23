@@ -24,11 +24,7 @@ def generate(system: str, user: str) -> str:
             response = _client.models.generate_content(
                 model=MODEL,
                 contents=user,
-                config=types.GenerateContentConfig(
-                    system_instruction=system, 
-                    temperature=0, 
-                    max_output_tokens=2048                
-                ),
+                config=types.GenerateContentConfig(system_instruction=system,max_output_tokens=2048),
             )
             return (response.text or "").strip()
         except Exception as e:
