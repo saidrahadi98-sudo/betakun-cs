@@ -1,4 +1,4 @@
-"""Web API for Tanya CS.  Run from the TanyaCS folder:  uvicorn src.api:app --reload"""
+"""Web API for Betakun CS.  Run from the BetakunCS folder:  uvicorn src.api:app --reload"""
 import logging
 from contextlib import asynccontextmanager
 
@@ -7,7 +7,7 @@ from pydantic import BaseModel, Field
 
 from src.answer import ask, _load
 
-log = logging.getLogger("tanya")
+log = logging.getLogger("betakun")
 
 
 @asynccontextmanager
@@ -16,7 +16,7 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="Tanya CS - BorneoNet", lifespan=lifespan)
+app = FastAPI(title="Betakun CS - BorneoNet", lifespan=lifespan)
 
 
 class AskRequest(BaseModel):

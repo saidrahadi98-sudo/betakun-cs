@@ -1,6 +1,6 @@
 """Start a new run by copying the old results that a cutoff change cannot affect.
 
-Usage (from the TanyaCS folder):
+Usage (from the BetakunCS folder):
     python eval/seed_run.py marker cutoff45 0.40
 
 Copies every saved result with best_distance <= 0.40 from full_marker.jsonl into

@@ -1,6 +1,6 @@
 """Compare two evaluation runs side by side.
 
-Usage (from the TanyaCS folder):
+Usage (from the BetakunCS folder):
     python eval/compare.py baseline marker
 """
 import csv

@@ -1,6 +1,6 @@
 """Full evaluation: retrieval, answer correctness (LLM judge) and refusal accuracy, per category.
 
-Usage (from the TanyaCS folder):
+Usage (from the BetakunCS folder):
     python eval/full_eval.py baseline            # whole test set, label "baseline"
     python eval/full_eval.py baseline limit=20   # quick trial on 20 random questions
 

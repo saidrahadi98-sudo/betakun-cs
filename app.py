@@ -1,4 +1,4 @@
-"""Chat page for Tanya CS.  Run from the TanyaCS folder:  python app.py"""
+"""Chat page for Betakun CS.  Run from the BetakunCS folder:  python app.py"""
 import gradio as gr
 
 from src.answer import ask
@@ -23,9 +23,9 @@ def chat(message, history):
 
 demo = gr.ChatInterface(
     fn=chat,
-    title="Tanya CS - BorneoNet",
+    title="Betakun CS - BorneoNet",
     description="Asisten layanan pelanggan BorneoNet (demo, perusahaan fiktif). "
-                "Tanya dalam bahasa Indonesia, bahasa gaul, campuran Inggris, atau Banjar.",
+                "Betakun/Tanya dalam bahasa Indonesia, bahasa gaul, campuran Inggris, atau Banjar.",
     examples=EXAMPLES,
 )
 

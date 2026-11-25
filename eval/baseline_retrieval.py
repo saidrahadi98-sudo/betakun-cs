@@ -1,6 +1,6 @@
 """Retrieval check on the whole test set: hit@k per category.
 
-Usage (from the TanyaCS folder):
+Usage (from the BetakunCS folder):
     python eval/baseline_retrieval.py             # saves eval/results/baseline.csv
     python eval/baseline_retrieval.py normalized  # saves eval/results/normalized.csv
 """

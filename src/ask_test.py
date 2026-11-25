@@ -1,6 +1,6 @@
 """Try the bot on a few questions.
 
-Run from the TanyaCS folder:  python -m src.ask_test
+Run from the BetakunCS folder:  python -m src.ask_test
 """
 from src.answer import ask
 
