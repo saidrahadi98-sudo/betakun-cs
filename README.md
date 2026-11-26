@@ -5,6 +5,7 @@ An Indonesian customer-support bot for **BorneoNet**, a fictional internet provi
 The point of the project is the language mix real customers use: formal Indonesian, slang and abbreviations, typos, Indonesian-English code-mixing, and **Bahasa Banjar** (Banjarese) mixed with Indonesian. "Betakun" comes from the Banjarese word for "to ask".
 
 ![Betakun CS answering in a Discord channel](docs/demo.png)
+![The /betakun slash command](docs/slash-command.png)
 
 Full recording (about 2 minutes, silent): [docs/demo.mp4](docs/demo.mp4)
 
@@ -16,7 +17,7 @@ Full recording (about 2 minutes, silent): [docs/demo.mp4](docs/demo.mp4)
 - Answers in clear Indonesian using only the FAQ text.
 - Shows which FAQ entries it looked at ("Sumber") and a rough language badge.
 - Hands off to a human (with the real opening hours and contact) when the FAQ cannot answer or the question has nothing to do with BorneoNet.
-- Three ways to use it: Discord bot, Gradio web chat, and a FastAPI endpoint.
+- Three ways to use it: Discord bot (type in the channel or use the `/betakun` command), Gradio web chat, and a FastAPI endpoint.
 
 ## How it works
 
@@ -93,7 +94,7 @@ Then pick one:
 
 ```
 python app.py                        # web chat (Gradio), opens on http://127.0.0.1:7860
-python discord_bot.py                # Discord bot, answers in the #betakun-cs channel
+python discord_bot.py                # Discord bot: answers in #betakun-cs, or use /betakun in any channel
 uvicorn src.api:app --reload         # API: POST /ask {"question": "..."}, GET /health
 ```
 
